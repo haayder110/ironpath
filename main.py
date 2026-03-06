@@ -28,7 +28,8 @@ from core.workout import WorkoutSession
 from core.analytics import Analytics
 from core.nutrition import Nutrition
 from core.gamification import Gamification
-
+from core.ai_coach import AICoach
+from main_ai_coach_integration import run_ai_plan_generation, run_coach_qa
 
 def main():
     db = Database()
@@ -69,8 +70,10 @@ def main():
 
         elif choice == "5":
             nutrition.show_guide()
-
         elif choice == "6":
+            run_coach_qa(profile, ui)
+
+        elif choice == "7":
             ui.goodbye(profile.name)
             break
 
