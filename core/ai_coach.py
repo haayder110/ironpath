@@ -11,7 +11,6 @@ Drop into core/. Requires: pip install anthropic
 import json
 import os
 import anthropic
-from data.database import Database
 
 MODEL      = "claude-sonnet-4-6"
 MAX_TOKENS = 2000
@@ -126,7 +125,9 @@ class AICoach:
     """
 
     def __init__(self, user_profile, api_key: str | None = None):
-        key = api_key or os.getenv("ANTHROPIC_API_KEY")
+    from data.database import Database
+    
+    key = api_key or os.getenv("ANTHROPIC_API_KEY")
         if not key:
             raise EnvironmentError(
                 "Set ANTHROPIC_API_KEY env variable to use the AI coach.\n"
